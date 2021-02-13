@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Payments from "./Payments";
 
 class Header extends React.Component {
 
-
+    //Credit card number 4242 4242 4242 4242
     renderContent () {
-        console.log(this.props.auth)
         switch (this.props.auth) {
             case null:
                 return;
@@ -15,16 +15,20 @@ class Header extends React.Component {
                     <li>
                         <a href="/auth/google"> Login With Google </a>
                     </li>
-                )
+                );
             default:
-                return <li><a href="/api/logout">Logout</a></li>
+                return (
+                    [
+                        <li key="1"><Payments /></li>,
+                        <li key="2"><a href="/api/logout">Logout</a></li>
+                    ]
+                )
         }
     }
 
 
     render() {
 
-        console.log(this.props.auth)
         return (
                 <nav>
                     <div className="nav-wrapper">
@@ -32,9 +36,7 @@ class Header extends React.Component {
                               className="left brand-logo"> Survey Me
                         </Link>
                         <ul id="nav-mobile" className="right">
-                            <li>
                                 {this.renderContent()}
-                            </li>
                         </ul>
                     </div>
                 </nav>
