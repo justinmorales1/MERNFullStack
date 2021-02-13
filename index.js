@@ -35,6 +35,18 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
 
+// VERY IMPORTANT - Handle production data for the assets and index.html
+if (process.env.NODE_ENV === 'production') {
+    //Express will serve up the productions assets likes main.js or main.css
+    app.use(express.static('client/build'));
+
+    //Express will serve index.html file if express doesnt understand the route.
+    const path = require('path');
+    app.get('*', (req, res)=> {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
+
 
 
 

@@ -5,7 +5,7 @@ import Payments from "./Payments";
 
 class Header extends React.Component {
 
-    //Credit card number 4242 4242 4242 4242
+    // Fake Credit card number for stripe 4242 4242 4242 4242 - Its fake people dont freak out and try to buy stuff with it.
     renderContent () {
         switch (this.props.auth) {
             case null:
@@ -20,12 +20,12 @@ class Header extends React.Component {
                 return (
                     [
                         <li key="1"><Payments /></li>,
-                        <li key="2"><a href="/api/logout">Logout</a></li>
+                        <li key="2" style={{ margin: "0 10px"}}> Credits: { this.props.auth.credits } </li>,
+                        <li key="3"><a href="/api/logout">Logout</a></li>
                     ]
                 )
         }
     }
-
 
     render() {
 
