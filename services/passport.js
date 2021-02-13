@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 
 
-const User = mongoose.model('users');
+const User = mongoose.model('user');
 
 //Seralize the users unique id that's created by mongo. It is not the same as the google id.
 passport.serializeUser((user, done)=> {

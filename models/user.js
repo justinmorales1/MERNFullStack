@@ -8,4 +8,4 @@ const UserSchema = new Schema({
    credits: {type: Number, default: 0}
 });
 
-mongoose.model('users', UserSchema);
+mongoose.model('user', UserSchema);

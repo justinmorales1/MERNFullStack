@@ -5,6 +5,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 require('./models/user');
+require('./models/survey');
 require('./services/passport');
 
 
@@ -34,6 +35,7 @@ app.use(passport.session());
 //These are returning a function thats why we can immediately return require.
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 // VERY IMPORTANT - Handle production data for the assets and index.html
 if (process.env.NODE_ENV === 'production') {
