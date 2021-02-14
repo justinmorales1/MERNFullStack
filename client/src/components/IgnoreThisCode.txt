@@ -1,0 +1,53 @@
+import React from 'react';
+import { connect } from "react-redux";
+import { reduxForm, Field } from "redux-form";
+import SurveyField from "./SurveyField";
+
+class  SurveyForm extends React.Component {
+
+    renderFields() {
+        return (
+            <div>
+                <Field type="text" name="title" component={SurveyField} label="Survey Title" />
+                <Field type="text" name="subject" component={SurveyField} label="Subject Line" />
+                <Field type="text" name="body" component={SurveyField} label="Email Body" />
+                <Field type="text" name="emails" component={SurveyField} label="Recipient List" />
+
+            </div>
+        )
+    }
+
+
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.props.handleSubmit((values)=> {console.log(this.props, values)})}>
+                    { this.renderFields() }
+                <button type="submit">Submit</button>
+                </form>
+            </div>
+        )
+    }
+}
+
+
+
+
+export default reduxForm({
+    form: 'surveyForm'
+})(SurveyForm);
+
+import React from 'react';
+
+//Wiring up a custom field
+export default ({input, label}) => {
+    return (
+        <div>
+            {/*Save time by grabbing all the input props with using the spread operator. If you want to see the props then console log props*/}
+            <label> { label } </label>
+            <input {...input}/>
+        </div>
+    )
+};
+
+

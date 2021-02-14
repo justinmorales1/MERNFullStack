@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.7.0",
     "axios": "^0.21.1",
     "http-proxy-middleware": "^1.0.6",
+    "lodash": "^4.17.20",
     "materialize-css": "^1.0.0-rc.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -16,6 +17,7 @@
     "react-scripts": "4.0.2",
     "react-stripe-checkout": "^2.6.3",
     "redux": "^4.0.5",
+    "redux-form": "^8.3.7",
     "redux-thunk": "^2.3.0",
     "thunk": "0.0.1",
     "web-vitals": "^1.1.0"

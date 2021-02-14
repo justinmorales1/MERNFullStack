@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Header from "./Header";
 import Dashboard from "./Dashboard";
 import Landing from "./Landing";
-import SurveyNew from "./SurveyNew";
+import SurveyNew from "./surveys/SurveyNew";
 import * as actions from '../actions'
 
 class App extends React.Component {
