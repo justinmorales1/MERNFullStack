@@ -7,7 +7,7 @@ const requireCredits = require('../middlewares/requireCredits');
 const Survey = mongoose.model('surveys');
 
 module.exports = app => {
-    app.post('/api/surveys', requirelogin, requireCredits, (req, res) => {
+     app.post('/api/surveys', requirelogin, requireCredits, async (req, res) => {
         const { title, subject, body, recipients } = req.body;
 
 
@@ -24,7 +24,7 @@ module.exports = app => {
 
         //Send the email from here.
         const mailer = new Mailer(survey, surveyTemplate(survey));
-
+        await mailer.send();
 
 
     });
