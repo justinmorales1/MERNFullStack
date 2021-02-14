@@ -4,14 +4,9 @@ import { Link } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 import SurveyField from "./SurveyField";
 import validateEmails from '../../utilities/validateEmails'
+import formFields from './formFields';
 
 
-const FIELDS = [
-    { label: 'Survey Title', name: 'title'},
-    { label: 'Subject Line', name: 'subject'},
-    { label: 'Email Body', name: 'body' },
-    { label: 'Recipient List', name: 'emails' }
-];
 
 class  SurveyForm extends React.Component {
 
@@ -28,7 +23,7 @@ class  SurveyForm extends React.Component {
     // }
 
     renderFields() {
-        return _.map(FIELDS, ({label, name}) => {
+        return _.map(formFields, ({label, name}) => {
             return <Field key={name} component={SurveyField} type="text" label={label} name={name} />
         })
     }
@@ -37,7 +32,8 @@ class  SurveyForm extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.props.handleSubmit((values)=> {console.log(this.props, values)})}>
+                {/*Callback to set form review state to true*/}
+                <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
                     { this.renderFields() }
                     <Link to="/surveys" className="red btn-flat white-text">
                         Cancel
@@ -57,7 +53,7 @@ function validate(values) {
 
     const errors = {};
 
-    errors.emails = validateEmails(values.emails || '');
+    errors.recipients = validateEmails(values.recipients || '');
 
     // if( !values.title ) {
     //     //     errors.title = "You must provide a title";
@@ -72,7 +68,7 @@ function validate(values) {
     //     // }
 
     //This for each replaces the if statements above.
-    _.each(FIELDS, ({name}) => {
+    _.each(formFields, ({name}) => {
         if(!values[name]) {
             errors[name] = 'You must provide a value';
         }
@@ -84,5 +80,7 @@ function validate(values) {
 
 export default reduxForm({
     validate,
-    form: 'surveyForm'
+    form: 'surveyForm',
+    //Keep the values when you go to SurveyFromReview
+    destroyOnUnmount: false
 })(SurveyForm);
