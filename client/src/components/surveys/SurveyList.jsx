@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import SurveyItem from "../SurveyItem";
 import { connect } from "react-redux";
 import { fetchSurveys } from "../../actions";
 
@@ -35,7 +34,6 @@ class SurveyList extends Component {
         return (
             <div>
                 {this.renderSurveys()}
-                <SurveyItem/>
             </div>
         )
     }
